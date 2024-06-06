@@ -1,0 +1,200 @@
+openapi: 3.0.1
+info:
+  title: Inbound Warehouse Management System
+  contact: {}
+  version: 1.0.0
+servers:
+- url: http://localhost:5010/v1/inbound/
+tags:
+- name: Inbound
+  description: ""
+paths:
+  /add:
+    post:
+      tags:
+      - Inbound
+      summary: Create new inbound to the warehouse management system
+      operationId: Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRequest'
+        required: true
+      responses:
+        201:
+          description: Create Inbound
+          content: {}
+        400:
+          description: invalid add inbound request
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: Body
+  /list:
+    get:
+      tags:
+      - Inbound
+      summary: View all list inbound in warehouse management system
+      operationId: viewall
+      responses:
+        200:
+          description: Status OK
+          content: {}
+        404:
+          description: Page Not Found
+          content: {}
+      deprecated: false
+  /list/{id}:
+    get:
+      tags:
+      - Inbound
+      summary: Find inbound by Id object
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        default:
+          description: ""
+          content: {}
+  /update/{id}:
+    put:
+      tags:
+      - Inbound
+      summary: Update a inbound the warehouse management system form database management
+      operationId: update
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updaterequest'
+      responses:
+        default:
+          description: ""
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: Body
+  /delete/{id}:
+    delete:
+      tags:
+      - Inbound
+      summary: Delete a inbound the warehouse management system form database
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        default:
+          description: ""
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: Body
+components:
+  schemas:
+    CreateRequest:
+      title: CreateRequest
+      required:
+      - area
+      - building
+      - date
+      - floor
+      - location
+      - products
+      - qty
+      - rack
+      - racklevel
+      - room
+      type: object
+      properties:
+        products:
+          type: string
+        date:
+          type: string
+        qty:
+          type: string
+        location:
+          type: string
+        building:
+          type: string
+        room:
+          type: string
+        floor:
+          type: string
+        area:
+          type: string
+        rack:
+          type: string
+        racklevel:
+          type: string
+      example:
+        products: nuklioidjwodwijdwoijir
+        date: 1/1/1
+        qty: "100"
+        location: bandung
+        building: jogja
+        room: a1
+        floor: "7"
+        area: sulit
+        rack: d
+        racklevel: z
+    updaterequest:
+      title: updaterequest
+      required:
+      - area
+      - building
+      - date
+      - floor
+      - location
+      - products
+      - qty
+      - rack
+      - racklevel
+      - room
+      type: object
+      properties:
+        products:
+          type: string
+        date:
+          type: string
+        qty:
+          type: string
+        location:
+          type: string
+        building:
+          type: string
+        room:
+          type: string
+        floor:
+          type: string
+        area:
+          type: string
+        rack:
+          type: string
+        racklevel:
+          type: string
+      example:
+        products: nuklioidjwodwijdwoijir
+        date: 1/1/1
+        qty: "100"
+        location: bandung
+        building: jogja
+        room: a1
+        floor: "7"
+        area: sulit
+        rack: d
+        racklevel: z
